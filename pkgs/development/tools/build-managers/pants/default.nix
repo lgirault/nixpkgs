@@ -2,17 +2,20 @@
 
 with stdenv.lib;
 with pythonPackages;
-
+#https://files.pythonhosted.org/packages/4c/a0/30c5a4238dc3161816ade1de6addf09c003be2d37a14e8ed895da137e56d/pantsbuild.pants-1.9.0-cp27-none-manylinux1_x86_64.whl
 let
-  version = "1.7.0";
+  version = "1.9.0";
 in buildPythonApplication rec {
   inherit version;
   pname = "pantsbuild.pants";
   name  = "${pname}-${version}";
 
   src = fetchPypi {
-    inherit pname version;
-    sha256 = "1d7ff1383287c8e72f2c9855cfef982d362274a64e2707a93c070f988ba80a37";
+    inherit pname version; 
+    python = "cp27";
+    format = "wheel";
+    platform = "manylinux1_x86_64";
+    sha256 = "aac1b5f29386400cb4b081ff165f5dd9f1c0eddf19741fa3b7ad5fe09013dc2d";
   };
 
   prePatch = ''
